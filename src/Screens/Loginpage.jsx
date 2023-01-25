@@ -38,7 +38,7 @@ function Loginpage(props) {
             </div>            
         </div>
         <div className="mb-[60px] h-[60px] ">
-            <button className=" text-xl  rounded-md p-2 font-bold  bg-fuchsia-500 text-white w-full ">
+            <button onClick={()=> props.login()} className=" text-xl  rounded-md p-2 font-bold  bg-fuchsia-500 text-white w-full ">
                 Log in
             </button>
         </div>
