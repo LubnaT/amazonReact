@@ -5,6 +5,7 @@ import { getFirestore, doc, getDoc ,setDoc  } from "firebase/firestore";
 import app from './firebase'
 import { useEffect, useState } from 'react';
 import Loginpage from './Screens/Loginpage';
+import Homescreen from './Screens/Homescreen';
 
 function App() {
 
@@ -67,7 +68,7 @@ useEffect(()=>{
 },[user])
   return (
     <div className="text-8xl">
-   {user ? <Homescreen/> : <Loginpage login={signup}/>} 
+   {user ? <Homescreen logout={SignOut}/> : <Loginpage login={signup}/>} 
     </div>
   );
 }
