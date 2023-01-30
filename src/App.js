@@ -4,8 +4,10 @@ import { getAuth, GoogleAuthProvider,signOut,signInWithPopup,onAuthStateChanged,
 import { getFirestore, doc, getDoc ,setDoc  } from "firebase/firestore";
 import app from './firebase'
 import { useEffect, useState } from 'react';
+import { Route, Routes } from "react-router-dom";
 import Loginpage from './Screens/Loginpage';
 import Homescreen from './Screens/Homescreen';
+import Productscreen from './Screens/Productscreen';
 
 function App() {
 
@@ -68,7 +70,12 @@ useEffect(()=>{
 },[user])
   return (
     <div className="text-8xl">
-   {user ? <Homescreen logout={SignOut}/> : <Loginpage login={signup}/>} 
+      <Routes>
+          <Route path="/" element= {user ? <Homescreen logout={SignOut}/> : <Loginpage login={signup}/>} />
+          <Route path="/product/:productId" element={ <Productscreen/> } />
+          {/* <Route path="/login" element={<LoginScreen Cred={setCred} />} /> */}
+        </Routes>
+   
     </div>
   );
 }
