@@ -55,7 +55,7 @@ function Navbar({logout}) {
         </button>
         
 
-        <div className=' pl-4 font-medium  border-2 border-transparent hover:cursor-pointer hover:border-white border-solid'>
+        <div className='font-medium  border-2 border-transparent hover:cursor-pointer hover:border-white border-solid'>
             <p className=' text-gray-400 text-xs'>Return</p>
             <div className=' flex'>
              <p className=' text-sm leading-4 whitespace-nowrap'>& Order</p>
