@@ -1,5 +1,12 @@
 import React from 'react'
 
+import IosShareIcon from '@mui/icons-material/IosShare';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AC from '../assets/AC.jpg'
+
 function Productscreen() {
 
     const product = {
@@ -32,7 +39,7 @@ const newprice = product.price * (1 - (disper * 0.01))
         <div className='max-w-8xl mx-auto grid  lg:grid-cols-2  md:grid-cols-1'>
           {/* 1st img div */}
           <div className='ml-[60px] mr-10'>
-            <img className='h-[650px] w-[500px]' src={urlFor(product.mainImage)}/>
+            <img className='h-[650px] w-[500px]' src={AC}/>
           </div>
           {/* midddle div content */}
           <div className='flex ml-0 pb-4'>
