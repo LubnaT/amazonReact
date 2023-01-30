@@ -6,12 +6,14 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AC from '../assets/AC.jpg'
+import { useParams } from 'react-router-dom';
 
 function Productscreen() {
+    const {slug} = useParams();
 
     const product = {
-        price:600,
-        title:"Lg",
+        price:60000,
+        title:"LGGGG",
         seller:"Lubna"
     }
 
@@ -58,11 +60,12 @@ const newprice = product.price * (1 - (disper * 0.01))
                </h2>
               </a>
               <a className='text-sm text-teal-600 hover:cursor-pointer hover:underline'>
-                Visit the {product.seller.name}Store
+                <p>   Visit the {product.seller.name}Store</p>
+             
               </a>
               {/* ratings div */}
               <div className='flex space-x-4 mb-0'>
-               <div>
+               <div className='text-sm'>
                 <StarRateIcon fontSize='inherit'/>
                 <StarRateIcon fontSize='inherit'/>
                 <StarRateIcon fontSize='inherit'/>
@@ -83,13 +86,13 @@ const newprice = product.price * (1 - (disper * 0.01))
             
             {/* product details div 2 */}
             <div className='mt-5 space-x-1 border-b-[1px] border-gray-400 pb-2'>
-              <p className='text-red-600 font-semibold'>Republic Day Sale</p>
-              <p className='text-2xl text-red-600 '>{disper}% 
-                <span className='text-3xl text-black -mt-4'>₹ {newprice}</span>
+              <p className='text-red-600 text-sm font-semibold'>Republic Day Sale</p>
+              <p className='text-xl text-red-600 '>{disper}%  
+                <span className='text-2xl text-black -mt-4'>     ₹ {newprice}</span>
               </p>
-              <p className='text-slate-600 text-sm'>M.R.P.:₹ {product.price}</p>
+              <p className='text-slate-600 text-sm'> M.R.P.:₹ {product.price}</p>
               <p className='text-sm'>Inclusive of all taxes</p>
-              <p><span className='font-bold text-sm'>EMI</span> starts at ₹1,576. No Cost EMI available </p>
+              <p className='text-sm'><span className='font-bold text-sm'>EMI</span> starts at ₹1,576. No Cost EMI available </p>
             </div>
 
             {/*product details div 3  */}
@@ -144,7 +147,7 @@ const newprice = product.price * (1 - (disper * 0.01))
             </div>
 
             {/* 3rd div */}
-          <div className='w-[1000px] h-max mx-4 border-slate-300 border-[1px] border-solid rounded-t-lg '>
+          <div className='w-[500px] h-max mx-4 border-slate-300 border-[1px] border-solid rounded-t-lg '>
             {/* 1st div */}
               <div className='bg-slate-100  border-slate-300 border-b-[1px] border-solid rounded-t-lg px-8 py-2'>
                 <div className='flex space-x-2 text-sm font-bold'>

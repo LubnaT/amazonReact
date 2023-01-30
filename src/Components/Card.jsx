@@ -14,7 +14,7 @@ function Card() {
            <a className="h-auto pt-2 hover:underline">
               <img className="h-[300px]" src={home}/> 
              <div className="h-10 mt-[15px] text-center">
-              <span className="text-md text-[#007185] items-end">Explore All</span>
+              <p className="text-sm text-[#007185] items-end">Explore All</p>
              </div>
            </a>
           </div>
@@ -24,7 +24,7 @@ function Card() {
               <a className="h-auto pt-2  hover:underline">
                   <img className="h-[265px]" src={women}/> 
                 <div className="h-10 mt-[15px] text-center">
-                 <span className="text-md text-[#007185] items-end">Explore All</span>
+                 <p className="text-sm text-[#007185] items-end">Explore All</p>
                 </div>
               </a>
              </div>
@@ -34,18 +34,17 @@ function Card() {
               <a className="h-auto pt-2  hover:underline">
                   <img className="h-[265px]" src={mens} />
                 <div className="h-10 mt-[15px] text-center">
-                 <span className="text-md text-[#007185] items-end">Explore All</span>
+                 <p className="text-sm text-[#007185] items-end">Explore All</p>
                 </div>
               </a>
              </div>
 
              <div className="flex flex-col hover:bg-pink-100 bg-white rounded-md p-4 w-[310px]">
               <h1 className="text-xl font-bold">Shop & Pay | Earn rewards daily</h1>
-              <a className="h-auto pt-2  hover:underline">
+              <a className="h-[25px] pt-2 text-center space-y-3 hover:underline">
                   <img className="h-[265px]" src={reward}/> 
-                <div className="h-10 mt-[15px] text-center">
-                 <span className="text-md text-[#007185] items-end">Explore All</span>
-                </div>
+                  <p className="text-sm  text-[#007185] items-end">Explore All</p>
+                
               </a>
              </div>
 
