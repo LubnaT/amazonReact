@@ -9,6 +9,7 @@ import Loginpage from './Screens/Loginpage';
 import Homescreen from './Screens/Homescreen';
 import Productscreen from './Screens/Productscreen';
 import ProductAdder from './Screens/ProductAdder';
+import Proceed from './Components/Proceed';
 
 function App() {
 
@@ -87,6 +88,7 @@ useEffect(()=>{
       <Routes>
           <Route path="/" element= {user ? <Homescreen logout={SignOut}/> : <Loginpage login={signup}/>} />
           <Route path="/product/:slug" element={ <Productscreen user={user}/> } />
+          <Route path="/product/cart" element={ <Proceed user={user}/> } />
           <Route path="/admin/add-product" element={<ProductAdder/>} >
 
           </Route>
