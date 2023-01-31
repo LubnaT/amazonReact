@@ -1,19 +1,51 @@
 import React from 'react'
 import StoreIcon from '@mui/icons-material/Store';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import ErrorIcon from '@mui/icons-material/Error';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LanguageIcon from '@mui/icons-material/Language';
 import HelpIcon from '@mui/icons-material/Help';
 import StarIcon from '@mui/icons-material/Star';
-import { Global } from '@emotion/react';
+import { getFirestore ,collection ,addDoc , doc, getDoc ,setDoc  } from "firebase/firestore";
+import { useState } from 'react';
+import app from '../firebase';
 
 function ProductAdder() {
-    
-    function AddProduct(){
+
+    // // Initialize Cloud Firestore and get a reference to the service
+       const db = getFirestore(app);
+
+    const schema ={
+
+        title:"",
+        email:"",
+        price:{},
+        offerprice:{},
+        category:"",
+        seller:"",
+        description:""
 
     }
+
+    const [prod,setprod] = useState(schema);
+    
+    function Handler(e){
+        const {name, value} = e.target;
+        setprod(prev=>({...prev, [name] : value}))
+
+    }
+    
+    async function AddProduct(){
+          await addDoc(collection(db,"Product"), prod).then((res)=>{
+            console.log(res)
+
+          }).catch((e)=>{
+            console.log(e)
+
+          }).finally(()=>{
+            setprod(schema)
+          })
+        }
+
   return (
     <div className=' w-screen h-max'>
             <div className=''>
@@ -30,7 +62,7 @@ function ProductAdder() {
                     <AttachFileIcon fontSize='inherit' className='rotate-45'/>
                     <div className='text-sm fle'> 
                         <a className='flex justify-start'>Affiliat URL*:</a>
-                        <input className='w-[40rem] text-sm rounded-md h-8 border border-black ml-'/><br/>
+                        <input onChange={Handler} name="url" id="url"   className='w-[40rem] text-sm rounded-md h-8 border border-black ml-'/><br/>
                         <a className='flex justify-start'>Enter your affiliat URL here</a>
                     </div><br/>
                 
@@ -42,7 +74,7 @@ function ProductAdder() {
                   
                     <div className='mt-10'>
                         <a className='text-sm flex justify-start font-semibold'>Main Image URL</a>
-                        <input className='rounded-lg text-sm border border-black w-[30rem] h-8'/>
+                        <input onChange={Handler} name="image" id="image"  className='rounded-lg text-sm border border-black w-[30rem] h-8'/>
                     </div>
                     </div>
 
@@ -51,7 +83,7 @@ function ProductAdder() {
                         <ShoppingCartIcon fontSize='inherit'/> 
                         <div className='text-lg'>
                             <a className='flex justify-start'>Title:<HelpIcon/> </a>
-                            <input className='h-8 w-72  text-sm border rounded-lg border-black'/>
+                            <input onChange={Handler} name="title" id="title"  className='h-8 w-72  text-sm border rounded-lg border-black'/>
                         </div>
                     </div>
                       {/* Price */}
@@ -59,7 +91,7 @@ function ProductAdder() {
                         <ShoppingCartIcon fontSize='inherit'/> 
                         <div className='text-lg '>
                             <a className='flex justify-start'>Price:<HelpIcon/> </a>
-                            <input className='h-8 w-72 text-sm border rounded-lg border-black'/>
+                            <input onChange={Handler} name="price" id="price" className='h-8 w-72 text-sm border rounded-lg border-black'/>
                         </div>
                     </div>
                        {/* Offer Price */}
@@ -67,7 +99,7 @@ function ProductAdder() {
                         <StarIcon fontSize='inherit'/> 
                         <div className='text-lg '>
                             <a className='flex justify-start'>Offer Price:<HelpIcon/> </a>
-                            <input className='h-8  w-72 border text-sm rounded-lg border-black'/>
+                            <input onChange={Handler} name="offerPrice" id="offerPrice" className='h-8  w-72 border text-sm rounded-lg border-black'/>
                         </div>
                     </div>
                      {/* Rating */}
@@ -75,7 +107,7 @@ function ProductAdder() {
                         {/* <StarIcon fontSize='inherit'/>  */}
                         <div className='text-lg '>
                             <a className='flex justify-start'>Seller:<HelpIcon/> </a>
-                            <input className='h-8  w-72 text-sm border rounded-lg border-black'/>
+                            <input onChange={Handler} name="seller" id="seller"  className='h-8  w-72 text-sm border rounded-lg border-black'/>
                         </div>
                     </div>
                       {/* reviews */}
@@ -83,7 +115,7 @@ function ProductAdder() {
                         <LanguageIcon fontSize='inherit'/> 
                         <div className='text-lg '>
                             <a className='flex justify-start'>Email:<HelpIcon/> </a>
-                            <input className='h-8 w-72 text-sm border rounded-lg border-black'/>
+                            <input onChange={Handler} name="email" id="email"  className='h-8 w-72 text-sm border rounded-lg border-black'/>
                         </div>
                     </div>
                     {/* country */}
@@ -91,7 +123,7 @@ function ProductAdder() {
                         {/* <LanguageIcon fontSize='inherit'/>  */}
                         <div className='text-lg '>
                             <a className='flex justify-start'>Category:<HelpIcon/> </a>
-                            <input className='h-8 w-72 text-sm  border rounded-lg border-black'/>
+                            <input onChange={Handler} name="category" id="category" className='h-8 w-72 text-sm  border rounded-lg border-black'/>
                         </div>
                     </div>
                     {/* description */}
@@ -99,14 +131,14 @@ function ProductAdder() {
                      
                         <div className='text-lg px-4'>
                             <a className='flex justify-start'>Description:<HelpIcon/> </a>
-                            <textarea id="message" name="message" className="w-[42rem]  text-sm  bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 outline-none text-gray-700 py-1 px-4 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                            <textarea onChange={Handler} id="description" name="description" className="w-[42rem]  text-sm  bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 outline-none text-gray-700 py-1 px-4 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
            
                         </div>
                     </div>
                     
                     {/* button */}
-                    <div className=' bg-purple-400 text-base font-semibold ml-[250px] text-center my-[20px] rounded-lg p-2'>
-                        <button className=''>Publish</button>
+                    <div className=' w-full ml-36 text-base font-semibold  text-center  p-2'>
+                        <button onClick={AddProduct} className='rounded-lg bg-purple-400 px-16 py-2 mx-auto '>Publish</button>
                     </div>
 
                 </div>
