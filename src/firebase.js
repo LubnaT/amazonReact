@@ -7,13 +7,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD0W2chM-ne1ncc-BwzgOhTquBM6gFdkUA",
-  authDomain: "whatsapp-clone-845f8.firebaseapp.com",
-  projectId: "whatsapp-clone-845f8",
-  storageBucket: "whatsapp-clone-845f8.appspot.com",
-  messagingSenderId: "753954718931",
-  appId: "1:753954718931:web:081c5ef8208c78f5198026",
-  measurementId: "G-246TG200N0"
+  apiKey: "AIzaSyBvFykmcx4FRD8QcvebGJGGClBNbxyVfaY",
+  authDomain: "clone-8a0c2.firebaseapp.com",
+  projectId: "clone-8a0c2",
+  storageBucket: "clone-8a0c2.appspot.com",
+  messagingSenderId: "899269942168",
+  appId: "1:899269942168:web:c549d97fe438c3e77b29ed",
+  measurementId: "G-N2MPQK13HC"
 };
 
 // Initialize Firebase

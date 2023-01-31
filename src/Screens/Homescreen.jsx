@@ -1,13 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import Navbar2 from '../Components/Navbar2'
 import banner from "../assets/banner.jpg";
 import Card from '../Components/Card'
 import Product from '../Components/Product';
 import AC from '../assets/AC.jpg'
+import { collection, query, where, onSnapshot ,getFirestore } from "firebase/firestore";
+import app from '../firebase';
 
 
 function Homescreen({logout}) {
+
+  const db = getFirestore(app);
+
+  const [items, setItems] = useState([]);
+
+
+ async function getdata(){
+   
+     await onSnapshot(collection(db, "Product"),(querySnapshot) => {
+  const temp = [];
+  querySnapshot.forEach((doc) => {
+      temp.push({id : doc.id(),...doc.data()});
+  });
+  setItems(temp);
+  });
+
+  }
+
+
+  useEffect(()=>{
+    getdata();
+
+  },[])
   return ( 
         <div className="bg-slate-200 pb-56">
            <Navbar logout={logout}/>
@@ -21,16 +46,16 @@ function Homescreen({logout}) {
         <div className="absolute top-25 max-w-[110rem] z-50 ab mx-auto gap-6 px-6 grid grid-cols-1
          md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
     
-            <div>
-            <Product
+            {items.map(items=><Product
+            id={items?.id}
+            key={items?.id}
               showName 
               showPrice 
-              name="LGGG"
-              price={60000}
+              name={items?.name}
+              price={items?.price}
               imgURL={AC}
               // slug={item.slug.current}
-            />
-          </div>
+            />)}
         </div>
       </div>
 

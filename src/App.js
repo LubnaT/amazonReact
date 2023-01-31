@@ -1,7 +1,7 @@
 
 import './App.css';
 import { getAuth, GoogleAuthProvider,signOut,signInWithPopup,onAuthStateChanged, } from "firebase/auth";
-// import { getFirestore, doc, getDoc ,setDoc  } from "firebase/firestore";
+import { getFirestore, doc, getDoc ,setDoc  } from "firebase/firestore";
 import app from './firebase'
 import { useEffect, useState } from 'react';
 import { Route, Routes } from "react-router-dom";
@@ -18,22 +18,29 @@ function App() {
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-// // Initialize Cloud Firestore and get a reference to the service
-// const db = getFirestore(app);
+
+const db = getFirestore(app);
+
 
 // useEffect(()=>{
 //   if (!user) return ;
 //   checkNewLogin();
 // },[user])
 
-// async function checkNewLogin(){
-//   const docRef = doc(db, "users", user?.uid);
-//   const docSnap = await getDoc(docRef);
+async function CheckFirstTime(){
+  const docRef = doc(db, "users", user?.uid);
+  const docSnap = await getDoc(docRef);
 
-// if (!docSnap.exists()) {
-//   await setDoc(doc(db, "users", user?.uid), user);   
-// }
-// }
+if (docSnap.exists()) {
+   console.log("Found")
+}
+await setDoc(doc(db, "users", user?.uid),
+ {name : user.displayName, email : user?.email, cart : [], id : user?.uid}).then(()=>
+ console.log("User")).catch((err)=>{
+  console.log(err)
+
+ })   
+}
 
 
 async function signup(){
@@ -69,14 +76,17 @@ useEffect(()=>{
     // } else {
       // User is signed out
       setUser(u)
+      CheckFirstTime();
     }
   });
 },[])
+
+
   return (
     <div className="text-8xl">
       <Routes>
           <Route path="/" element= {user ? <Homescreen logout={SignOut}/> : <Loginpage login={signup}/>} />
-          <Route path="/product/:slug" element={ <Productscreen/> } />
+          <Route path="/product/:slug" element={ <Productscreen user={user}/> } />
           <Route path="/admin/add-product" element={<ProductAdder/>} >
 
           </Route>

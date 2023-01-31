@@ -7,9 +7,13 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AC from '../assets/AC.jpg'
 import { useParams } from 'react-router-dom';
+import { doc, updateDoc, arrayUnion, arrayRemove, getFirestore } from "firebase/firestore";
+import app from '../firebase';
 
-function Productscreen() {
+function Productscreen({user}) {
     const {slug} = useParams();
+    
+  const db = getFirestore(app);
 
     const product = {
         price:60000,
@@ -20,6 +24,16 @@ function Productscreen() {
 const disper =  Math.round(Math.random() * 20);
 
 const newprice = product.price * (1 - (disper * 0.01))
+
+  async function AddtoCart(x){
+    if(!x) return;
+  const userRef = doc(db, "users", user?.id);
+
+// Atomically add a new region to the "regions" array field.
+    await updateDoc(userRef, {
+    cart: arrayUnion(x)
+});
+}
   return (
     <div>
     {/* product div */}
@@ -64,8 +78,8 @@ const newprice = product.price * (1 - (disper * 0.01))
              
               </a>
               {/* ratings div */}
-              <div className='flex space-x-4 mb-0'>
-               <div className='text-sm'>
+              <div className='text-yellow-500 flex space-x-4 mb-0'>
+               <div className='text-base'>
                 <StarRateIcon fontSize='inherit'/>
                 <StarRateIcon fontSize='inherit'/>
                 <StarRateIcon fontSize='inherit'/>
@@ -189,7 +203,7 @@ const newprice = product.price * (1 - (disper * 0.01))
 
                <div className='mt-4 flex-col space-y-4 items-center'>
                  <div>
-                 <button className='bg-yellow-400 rounded-lg px-10 py-2'>Add to Cart</button>
+                 <button onClick={()=>AddtoCart(slug)} className='bg-yellow-400 rounded-lg px-10 py-2'>Add to Cart</button>
                  </div>
                  <div>
                  <button className='bg-yellow-400 rounded-lg px-12 py-2'> Buy Now</button>
