@@ -8,7 +8,7 @@ import { collection, query, where, onSnapshot ,getFirestore } from "firebase/fir
 import app from '../firebase';
 
 
-function Homescreen({logout}) {
+function Homescreen({logout,user,...props}) {
 
   const db = getFirestore(app);
 
@@ -34,7 +34,7 @@ function Homescreen({logout}) {
   },[])
   return ( 
         <div className="bg-slate-200 pb-56">
-           <Navbar logout={logout}/>
+           <Navbar logout={logout} user={user}/>
            <Navbar2/>
       <div className=" max-w-[110rem]  mx-auto relative">
         <img className="" src={banner} />

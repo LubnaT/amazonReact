@@ -11,9 +11,10 @@ import { doc, updateDoc, arrayUnion, arrayRemove, getFirestore } from "firebase/
 import app from '../firebase';
 
 function Productscreen({user}) {
-    const {slug} = useParams();
-    
+
   const db = getFirestore(app);
+  
+  const {slug} = useParams();
 
     const product = {
         price:60000,

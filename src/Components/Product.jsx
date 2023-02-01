@@ -10,9 +10,10 @@ function Product({imgURL ,id , name , price ,showPrice ,showName,slug, ...props}
     <div className=' bg-white justify-center flex flex-col py-2 rounded-xl'>
         
     <a  href={`/product/${id}`}>
- <img className='max-h-72 object-cover' src={imgURL} alt={name} />
-    {showName && <p className=' text-xl font-bold px-4 border-t'>{truncate(name,15)}</p>}
-    {showPrice && <p className=' text-lg px-4 font-semibold text-gray-600'>Price : $ {price}</p>}
+       <img className='max-h-72 object-cover' src={imgURL} alt={name} />
+       {showName && <p className=' text-xl font-bold px-4 border-t'>{truncate(name,15)}</p>}
+       {showPrice && <p className=' text-lg px-4 font-semibold text-gray-600'>Price : $ {price}</p>}
+    </a>
   
     {/* <span className=" flex justify-center text-center">
       {/* <div className="p-2 mt-4 font-semibold w-full items-center text-sm 
@@ -20,7 +21,7 @@ function Product({imgURL ,id , name , price ,showPrice ,showName,slug, ...props}
         Add to cart
       </div> */}
     {/* </span>  */}
-    </a>
+    
    
 </div>
   )

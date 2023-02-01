@@ -12,15 +12,17 @@ import ProductAdder from './Screens/ProductAdder';
 import Proceed from './Components/Proceed';
 
 function App() {
-
-  const [user,setUser]= useState(false);
-
-
-
+  
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+
 const db = getFirestore(app);
+
+
+  const [user,setUser]= useState(()=>auth.currentUser);
+
+
 
 
 // useEffect(()=>{
@@ -38,7 +40,7 @@ if (docSnap.exists()) {
 else{
   await setDoc(doc(db, "users", user?.uid),
  {name : user.displayName, email : user?.email, cart : [], id : user?.uid})
- .then(()=>console.log("User"))
+ .then(()=>console.log("User created"))
  .catch((err)=>{
   console.log(err)
 
@@ -64,7 +66,7 @@ async function signup(){
 
 
 async function SignOut(){
- await signOut(auth).then(()=>{console.log("errr")}).catch(()=>{console.log("error")})
+ await signOut(auth).then(()=>{console.log("sign out")}).catch(()=>{console.log("error")})
 }
 
 useEffect(()=>{
@@ -79,7 +81,7 @@ useEffect(()=>{
      
     // } else {
       // User is signed out
-      setUser(u)
+      setUser(u);
       CheckFirstTime();
     }
   });
@@ -89,7 +91,7 @@ useEffect(()=>{
   return (
     <div className="text-8xl">
       <Routes>
-          <Route path="/" element= {user ? <Homescreen logout={SignOut}/> : <Loginpage login={signup}/>} />
+          <Route path="/" element= {user ? <Homescreen logout={SignOut} user={user}/> : <Loginpage login={signup}/>} />
           <Route path="/product/:slug" element={ <Productscreen user={user}/> } />
           <Route path="/product/cart" element={ <Proceed user={user}/> } />
           <Route path="/admin/add-product" element={<ProductAdder/>} >
