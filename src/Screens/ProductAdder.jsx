@@ -62,14 +62,14 @@ function ProductAdder() {
                     <AttachFileIcon fontSize='inherit' className='rotate-45'/>
                     <div className='text-sm fle'> 
                         <a className='flex justify-start'>Affiliat URL*:</a>
-                        <input onChange={Handler} name="url" id="url"   className='w-[40rem] text-sm rounded-md h-8 border border-black ml-'/><br/>
+                        <input onChange={Handler} name="url" type='url' id="url"   className='w-[40rem] text-sm rounded-md h-8 border border-black ml-'/><br/>
                         <a className='flex justify-start'>Enter your affiliat URL here</a>
                     </div><br/>
                 
                 </div>
                 <div className='bg-white  border-black border-2 border-solid px-2 w-1/2 mx-auto h-max py-2 flex space-x-2 text-4xl '>
-                   <div>
-                   <img className='w-60 h-40' src=''/>
+                   <div className='border border-black '>
+                   <input onChange={Handler} className='w-60 h-40' name="imageadd"/>
                    </div>
                   
                     <div className='mt-10'>

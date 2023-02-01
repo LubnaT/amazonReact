@@ -9,15 +9,12 @@ function Proceed({user}) {
 
     async function getUserInfo(){
         const docRef = doc(db, "users", user?.uid);
-           const docSnap = await getDoc(docRef);
+        const docSnap = await getDoc(docRef);
+         console.log(docSnap.data())
+          setUinfo(docSnap.data());
+    }
 
-
-           console.log(docSnap.data())
-
-           setUinfo(docSnap.data());
-                             }
-
-            useEffect(()=>{
+        useEffect(()=>{
                 getUserInfo()
             },[])
   return (

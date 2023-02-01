@@ -48,9 +48,9 @@ function Homescreen({logout,user,...props}) {
             {items?.map(items=><Product
             id={items?.id}
             key={items?.id}
-              showName 
+              showTitle 
               showPrice 
-              name={items?.name}
+              title={items?.title}
               price={items?.price}
               imgURL='https://m.media-amazon.com/images/I/714vSwERZUL._SL1500_.jpg'
               // slug={item.slug.current}
@@ -60,9 +60,9 @@ function Homescreen({logout,user,...props}) {
 
       <div className=" mt-[480px] flex overflow-x-scroll max-w-[110rem] mx-auto overflow-y-hidden p-4 space-x-2 ">
             <Product
-              showName = {false}
+              showTitle= {false}
               showPrice ={ false}
-              name="MI Phone"
+              title="MI Phone"
               price="250$"
               imgURL="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1672738688.24231648!348x348.jpg?f=webp"
             />
