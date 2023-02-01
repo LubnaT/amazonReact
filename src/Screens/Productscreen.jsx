@@ -27,7 +27,7 @@ const newprice = product.price * (1 - (disper * 0.01))
 
   async function AddtoCart(x){
     if(!x) return;
-  const userRef = doc(db, "users", user?.id);
+  const userRef = doc(db, "users", user?.uid);
 
 // Atomically add a new region to the "regions" array field.
     await updateDoc(userRef, {
