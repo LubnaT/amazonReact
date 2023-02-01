@@ -6,6 +6,8 @@ import Card from '../Components/Card'
 import Product from '../Components/Product';
 import { collection, query, where, onSnapshot ,getFirestore } from "firebase/firestore";
 import app from '../firebase';
+import Bestseller from '../Components/Bestseller';
+import Middlebanner from '../Components/Middlebanner';
 
 
 function Homescreen({logout,user,...props}) {
@@ -57,6 +59,9 @@ function Homescreen({logout,user,...props}) {
             />)}
         </div>
       </div>
+      
+      <Bestseller/>
+      <Middlebanner/>
 
       <div className=" mt-[480px] flex overflow-x-scroll max-w-[110rem] mx-auto overflow-y-hidden p-4 space-x-2 ">
             <Product

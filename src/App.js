@@ -9,7 +9,7 @@ import Loginpage from './Screens/Loginpage';
 import Homescreen from './Screens/Homescreen';
 import Productscreen from './Screens/Productscreen';
 import ProductAdder from './Screens/ProductAdder';
-import Proceed from './Components/Proceed';
+import Proceed from './Screens/Proceed';
 
 function App() {
   
