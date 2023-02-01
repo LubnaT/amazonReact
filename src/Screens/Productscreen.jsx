@@ -17,7 +17,7 @@ function Productscreen({user}) {
 
     const product = {
         price:60000,
-        title:"LGGGG",
+       name:"LGGGG",
         seller:"Lubna"
     }
 

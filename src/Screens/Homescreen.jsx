@@ -4,7 +4,6 @@ import Navbar2 from '../Components/Navbar2'
 import banner from "../assets/banner.jpg";
 import Card from '../Components/Card'
 import Product from '../Components/Product';
-import AC from '../assets/AC.jpg'
 import { collection, query, where, onSnapshot ,getFirestore } from "firebase/firestore";
 import app from '../firebase';
 
@@ -18,10 +17,10 @@ function Homescreen({logout}) {
 
  async function getdata(){
    
-     await onSnapshot(collection(db, "Product"),(querySnapshot) => {
+      onSnapshot(collection(db, "Product"),(querySnapshot) => {
   const temp = [];
   querySnapshot.forEach((doc) => {
-      temp.push({id : doc.id(),...doc.data()});
+      temp.push({id : doc.id,...doc.data()});
   });
   setItems(temp);
   });
@@ -46,14 +45,14 @@ function Homescreen({logout}) {
         <div className="absolute top-25 max-w-[110rem] z-50 ab mx-auto gap-6 px-6 grid grid-cols-1
          md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
     
-            {items.map(items=><Product
+            {items?.map(items=><Product
             id={items?.id}
             key={items?.id}
               showName 
               showPrice 
               name={items?.name}
               price={items?.price}
-              imgURL={AC}
+              imgURL='https://m.media-amazon.com/images/I/714vSwERZUL._SL1500_.jpg'
               // slug={item.slug.current}
             />)}
         </div>

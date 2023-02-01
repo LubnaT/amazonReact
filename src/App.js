@@ -35,12 +35,15 @@ async function CheckFirstTime(){
 if (docSnap.exists()) {
    console.log("Found")
 }
-await setDoc(doc(db, "users", user?.uid),
- {name : user.displayName, email : user?.email, cart : [], id : user?.uid}).then(()=>
- console.log("User")).catch((err)=>{
+else{
+  await setDoc(doc(db, "users", user?.uid),
+ {name : user.displayName, email : user?.email, cart : [], id : user?.uid})
+ .then(()=>console.log("User"))
+ .catch((err)=>{
   console.log(err)
 
  })   
+}
 }
 
 
